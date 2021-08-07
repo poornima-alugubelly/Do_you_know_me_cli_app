@@ -1,31 +1,32 @@
 var readlineSync = require("readline-sync");
-
- 
-var score = 0;
-
 console.log("Hi This is Poornima");
 var userName = readlineSync.question("What's your name ?  ");
-
 console.log("Welcome " + userName + " let's see how well you know me");
 
 var scoreBoard=[{
-  name: "Tanay: ",
-  score: 0,
-},
-{
-  name: "Sanjana: ",
-  score: 4,
-}]
+      name: "Apoorva: ",
+      score: 1,
+    },
+    {
+      name: "Sanjana:",
+      score: 3,
+  }]
+
+var score = 0;
 
 function play(question, answer){
   var userAnswer = readlineSync.question(question);
   if(userAnswer.toUpperCase() === answer.toUpperCase()){
-    console.log("Correct !");
+
+    console.log("Your answer is correct ✅");
     score = score + 1;
-  }else
-  {
-    console.log("Wrong Answer");
   }
+  else
+  {
+    console.log("Bzzztt Wrong Answer ❌");
+  }
+
+  console.log( "Your current score is "+ score);
 
 }
 
@@ -34,15 +35,18 @@ function play(question, answer){
 var questions = [{
     question: "Where do I live? ",
     answer: "Hyderabad"
-},{
-  question: "What's my fav movie? ",
-  answer: "Parasite"
-},{
- question: "Which sport do I like watching? ",
- answer: "Ice skating"
-},{
+  },
+  {
+    question: "What's my fav movie? ",
+    answer: "Parasite"
+  },
+  {
+    question: "What's my fav dish? ",
+    answer: "Biryani"
+  },
+  {
   question: "How old am I? ",
-  answer: "20"
+  answer: "21"
   }] ;
 
 for(var i=0; i<questions.length; i++){
@@ -51,14 +55,24 @@ for(var i=0; i<questions.length; i++){
   currentQuestion.answer);
 }
 
-max=0
-console.log("--------");
-console.log("Your scored: ", score);
 
-  for(var i=0;i<scoreBoard.length; i++){
-   
-         max =Math.max(scoreBoard[i].score, score);
+console.log("-------------");
+console.log("You scored: ", score);
+
+var max=0;
+
+for(var i=0;i<scoreBoard.length-1; i++){
+     max = Math.max(scoreBoard[i].score,scoreBoard[i+1].score)
+  } 
+console.log("Currently the highest score on this quiz is " + max);
+
+if(score>=max){
+    console.log("Congratulations! You have achieved the highest score 🔥")
+    console.log("Please send me a screen shot!")
   }
-    console.log("Currently the highest score on this quiz is " + max);
-    console.log("Please let me know if you score the highest ");
+
+  else{
+    console.log("Missed it by " + (max-score) + " points 😔")
+  }
+
   
