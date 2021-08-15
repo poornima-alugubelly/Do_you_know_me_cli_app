@@ -49,8 +49,9 @@ var questions = [{
   question: "How old am I? ",
   answer: "21"
   },
-question: "What's my favourite band?",
-answer: "BTS"
+                 
+{question: "What's my favourite band?",
+answer: "BTS"}
 ] ;
 
 for(var i=0; i<questions.length; i++){
