@@ -1,83 +1,90 @@
-var readlineSync = require("readline-sync");
+const readlineSync = require("readline-sync");
 console.log("Hi This is Poornima");
-var userName = readlineSync.question("What's your name ?  ");
-console.log("Welcome " + userName + " let's see how well you know me");
+const playerName = readlineSync.question("What's your name ?  ");
+console.log(`Welcome ${playerName} let's see how well you know me`);
 
-var scoreBoard=[{
-      name: "Apoorva: ",
-      score: 1,
+const scoreBoard=[
+  {
+    name: "Teju",
+    score: 5
+  },
+  {
+    name: "Hari",
+    score:4
+  },
+  {
+      name: "Apoorva",
+      score: 2,
     },
     {
-      name: "Sanjana:",
-      score: 3,
+      name: "Sanjana",
+      score: 2,
   }
-]
+  ]
 
-var score = 0;
+let playerScore = 0;
 
-function play(question, answer){
-  var userAnswer = readlineSync.question(question);
-  if(userAnswer.toUpperCase() === answer.toUpperCase()){
+const play = (ques,ans) => {
+
+  
+   let playerAnswer = readlineSync.question(ques);
+ 
+    if(playerAnswer.toUpperCase() === ans.toUpperCase()){
 
     console.log("Your answer is correct ✅");
-    score = score + 1;
+    playerScore = playerScore + 1;
   }
   else
   {
     console.log("Bzzztt Wrong Answer ❌");
   }
 
-  console.log( "Your current score is "+ score);
+  console.log( "Your current score is "+ playerScore);
 
 }
 
-
-
-var questions = [{
-    question: "Where do I live? ",
-    answer: "Hyderabad"
+const questions = [{
+    question: "Where do I live? \n A) Chennai \n B)  Delhi \n C) Hyderabad \n",
+    answer: "c"
   },
   {
-    question: "What's my fav movie? ",
-    answer: "Parasite"
+    question: "What's my fav movie?\n A) Wall-E \n B) Mean Girls \n C) Parasite \n ",
+    answer: "c"
   },
   {
-    question: "What's my fav dish? ",
-    answer: "Biryani"
+    question: "What's my fav dish?\n A) Shawarma \n B) Chicken Biryani \n C) Mandi \n ",
+    answer: "b"
   },
   {
-  question: "How old am I? ",
-  answer: "21"
+  question: "What's my fav pastime? \n A) Reading \n B) Running \n C) Painting \n ",
+  answer: "a"
   },
-                 
-{question: "What's my favourite band?",
-answer: "BTS"}
-] ;
+  {question: "What's my favourite band? \n A) AC/DC \n B) BTS \n C) 1D \n",
+  answer: "b"
+  }
+];
 
-for(var i=0; i<questions.length; i++){
-  var currentQuestion = questions[i];
-  play(currentQuestion.question,
-  currentQuestion.answer);
-}
-
+questions.forEach(currentQnA => play(currentQnA.question,currentQnA.answer))
 
 console.log("-------------");
-console.log("You scored: ", score);
+console.log(`You scored ${playerScore} points`);
 
-var max=0;
+let maxScore=0;
+//calc highest score currently
+scoreBoard.forEach(player => {
+             maxScore = player.score>maxScore? player.score : maxScore 
+               }
+             )
+console.log("Currently the highest score on this quiz is " + maxScore);
 
-for(var i=0;i<scoreBoard.length-1; i++){
-     max = Math.max(scoreBoard[i].score,scoreBoard[i+1].score)
-  } 
-console.log("Currently the highest score on this quiz is " + max);
-
-if(score>=max){
-    console.log("Congratulations! You have achieved the new high score 🔥")
+ 
+if(playerScore>=maxScore){
+    console.log("Congratulations! You have achieved new high score 🔥")
     console.log("Please send me a screen shot!")
   }
 
   else{
-    console.log("You missed it by " + (max-score) + " points 😔")
+    console.log("You missed it by " + (maxScore-playerScore) + " points 😔")
   }
 
   
